@@ -1,0 +1,51 @@
+#include <cs50.h>
+#include <stdio.h>
+
+void cash(int change, int n);
+
+int main(void)
+{
+    // This prompts the user for the amount of change owed.
+    int change = get_int("Change owed:");
+    // This prompts the user again if the change amount is not valid.
+    while (change < 0)
+    {
+        change = get_int("Number too small. Change owed:");
+    }
+    // The integer n is a counter for how many coins that are needed.
+    int n = 0;
+    cash(change, n);
+}
+// This function, cash, solves for n and prints it out.
+void cash(int change, int n)
+{
+// These integers are created to represent the types of coins.
+    int quarter = 25;
+    int dime = 10;
+    int nickel = 5;
+    int penny = 1;
+// This is the "Greedy Algorithm."
+    while (change >= quarter)
+    {
+        change = change - quarter;
+        n++;
+    }
+    while (change >= dime)
+    {
+        change = change - dime;
+        n++;
+    }
+    while (change >= nickel)
+    {
+        change = change - nickel;
+        n++;
+    }
+    while (change >= penny)
+    {
+        change = change - penny;
+        n++;
+    }
+// This prints n out.
+    printf("%i", n);
+    printf("\n");
+}
